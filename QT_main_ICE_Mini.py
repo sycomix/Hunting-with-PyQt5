@@ -206,7 +206,7 @@ class GUIInstance(QWidget):
     def generate_crypto(self):
         found = int(self.found_keys_scanned_edit.text())
         startPrivKey = self.num
-        for i in range (0,self.power_format):
+        for _ in range (0,self.power_format):
             dec = int(startPrivKey)
             HEX = "%064x" % dec
             caddr = ice.privatekey_to_address(0, True, dec)
@@ -313,10 +313,7 @@ class GUIInstance(QWidget):
     
     def update_keys_per_sec(self):
         elapsed_time = time.time() - self.start_time
-        if elapsed_time == 0:
-            keys_per_sec = 0
-        else:
-            keys_per_sec = self.counter / elapsed_time
+        keys_per_sec = 0 if elapsed_time == 0 else self.counter / elapsed_time
         keys_per_sec = round(keys_per_sec, 2)
         self.keys_per_sec_edit.setText(str(keys_per_sec))
         self.start_time = time.time()

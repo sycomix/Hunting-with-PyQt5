@@ -183,13 +183,17 @@ class GUI(QWidget):
         # Display the private key, mnemonic phrase, and addresses in the line edits
         self.private_key_edit.setText(private_key.hex())
         self.mnemonic_phrase_edit.setText(mnemonic_phrase)
-        response = requests.get("https://blockstream.info/api/address/" + str(base58_address_compressed.decode()))
+        response = requests.get(
+            f"https://blockstream.info/api/address/{str(base58_address_compressed.decode())}"
+        )
         balance = float(response.json()['chain_stats']['funded_txo_sum'])
         totalSent = float(response.json()['chain_stats']['spent_txo_sum'])
         txs = response.json()['chain_stats']['funded_txo_count']
         source_code = f'{base58_address_compressed.decode()} TotalReceived = [{balance}] : TotalSent =  [{totalSent}] : Transactions = [{txs}]'
-        
-        responseu = requests.get("https://blockstream.info/api/address/" + str(base58_address_uncompressed.decode()))
+
+        responseu = requests.get(
+            f"https://blockstream.info/api/address/{str(base58_address_uncompressed.decode())}"
+        )
         balanceu = float(responseu.json()['chain_stats']['funded_txo_sum'])
         totalSentu = float(responseu.json()['chain_stats']['spent_txo_sum'])
         txsu = responseu.json()['chain_stats']['funded_txo_count']
@@ -263,13 +267,17 @@ class GUI(QWidget):
         # Display the private key, mnemonic phrase, and addresses in the line edits
         self.private_key_edit.setText(private_key.hex())
         self.mnemonic_phrase_edit.setText(mnemonic_phrase)
-        response = requests.get("https://blockstream.info/api/address/" + str(base58_address_compressed.decode()))
+        response = requests.get(
+            f"https://blockstream.info/api/address/{str(base58_address_compressed.decode())}"
+        )
         balance = float(response.json()['chain_stats']['funded_txo_sum'])
         totalSent = float(response.json()['chain_stats']['spent_txo_sum'])
         txs = response.json()['chain_stats']['funded_txo_count']
         source_code = f'{base58_address_compressed.decode()} TotalReceived = [{balance}] : TotalSent =  [{totalSent}] : Transactions = [{txs}]'
-        
-        responseu = requests.get("https://blockstream.info/api/address/" + str(base58_address_uncompressed.decode()))
+
+        responseu = requests.get(
+            f"https://blockstream.info/api/address/{str(base58_address_uncompressed.decode())}"
+        )
         balanceu = float(responseu.json()['chain_stats']['funded_txo_sum'])
         totalSentu = float(responseu.json()['chain_stats']['spent_txo_sum'])
         txsu = responseu.json()['chain_stats']['funded_txo_count']
